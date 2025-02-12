@@ -13,12 +13,12 @@ describe('Elements', () => {
     })
 
     it('Deve editar o novo usuário criado', () => {
-        elements.registrationForm(userData.user)
-        elements.editUser(userData.user)
+        elements.registrationForm(userData.user4)
+        elements.editUser(userData.user4)
     })
-
     it('Deve deletar o novo usuário criado', () => {
         elements.registrationForm(userData.user)
         elements.deleteUser(userData.user)
     })
+
 })
