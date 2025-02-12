@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "test:cy": "npx cypress open"
+  },
+  "keywords": [],
+  "author": "Ericton Brito",
+  "license": "ISC",
+  "description": "Teste de api com cypress",
+  "devDependencies": {
+    "cypress": "^14.0.3"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.2"
+  }
+}
