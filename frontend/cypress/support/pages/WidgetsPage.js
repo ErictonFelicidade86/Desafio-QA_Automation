@@ -54,7 +54,7 @@ class WidgetsForms {
                     cy.wait(100)
                     checkProgress() // Continua verificando até 100%
                 } else {
-                    cy.log(`✔ Barra atingiu ${progressValue}%, aguardando para resetar...`)
+                    cy.log(`Barra atingiu ${progressValue}%, aguardando para resetar...`)
 
                     cy.wait(3000)
 

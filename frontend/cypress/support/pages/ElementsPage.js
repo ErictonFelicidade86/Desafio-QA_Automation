@@ -15,6 +15,7 @@ class ElementsPages {
 
     // Criar um único usuário
     registrationForm() {
+        cy.addUser()
         cy.createUser()
         cy.btnSubmit()
     }
