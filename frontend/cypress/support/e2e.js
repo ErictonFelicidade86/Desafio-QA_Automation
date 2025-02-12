@@ -17,6 +17,7 @@
 import './commands'
 import 'cypress-xpath';
 import 'cypress-file-upload';
+import 'cypress-real-events/support';
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false; // Ignora os erros não capturados e continua o teste
 });
