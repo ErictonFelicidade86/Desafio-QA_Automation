@@ -1,10 +1,12 @@
 import data from '../../fixtures//praticeForm.json'
-const filePath = '../../fixtures/assets/files/bem_vidno_teste.txt'
-
 class FormsPage {
     go(){
-        cy.blockAds()
         cy.visit("https://demoqa.com/")
+    }
+
+    urlSample() {
+        cy.visit("https://demoqa.com/sample")
+
     }
 
     clickForms() {

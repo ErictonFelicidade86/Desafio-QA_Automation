@@ -1,6 +1,5 @@
 import forms from '../support/pages/FormsPage'
 
-
 describe('Forms', () => {
   it('Deve acessar página forms', () => {
      forms.go()
