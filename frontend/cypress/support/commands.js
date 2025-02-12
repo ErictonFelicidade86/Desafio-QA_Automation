@@ -1,5 +1,6 @@
 import data from '../fixtures/user.json'
 import user from '../fixtures/praticeForm.json'
+import 'cypress-xpath'
 
 
 
@@ -109,22 +110,75 @@ Cypress.Commands.add('closeModal', () => {
         cy.get('#closeLargeModal').click()
 })
 
+// PAGE INTERACTIONS PAGE
+Cypress.Commands.add('moveItems', (itemsToMove, target) => {
+    itemsToMove.forEach((item) => {
+        cy.contains('.list-group-item', item)
+            .should('be.visible')
+            .trigger('mousedown', { which: 1, force: true })
 
+        cy.contains('.list-group-item', target) // Alvo do movimento
+            .should('be.visible')
+            .trigger('mousemove', { which: 1, force: true })
+            .trigger('mouseup', { force: true })
 
+        cy.wait(500)
+    })
 
+    cy.log('Os elementos deverão ficar na ordem decrescente')
+})
 
+// PAGE WIDGETS PAGE
+Cypress.Commands.add('stopBeforeOrAt25', () => {
+    cy.wait(100)
+    cy.get('#progressBar').invoke('text').then((progressText) => {
+        let progressValue = parseInt(progressText.replace('%', ''), 10)
 
+        if (progressValue <= 25) {
+            cy.get('#startStopButton').click() // Para a barra se estiver ≤ 25%
+            cy.log(`Barra parada em ${progressValue}%`)
 
+            cy.wait(3000)
+        } else {
+            cy.wait(100)
+            cy.stopBeforeOrAt25() // Recursão para continuar verificando
+        }
+    })
+})
 
+Cypress.Commands.add('validateProgress', () => {
+    cy.get('#progressBar').invoke('text').then((progressText) => {
+        const progressValue = parseInt(progressText.replace('%', ''), 10)
+        cy.log(`Validando progresso: ${progressValue}%`)
+        cy.wait(3000)
+        expect(progressValue).to.be.lte(25) // Verifica se o progresso é menor ou igual a 25%
+    })
+})
 
+Cypress.Commands.add('monitorarProgresso', () => {
+    cy.get('#startStopButton').click() // Inicia a barra
 
+    const checkProgress = () => {
+        cy.get('#progressBar').invoke('text').then((progressText) => {
+            let progressValue = parseInt(progressText.replace('%', ''), 10)
 
+            if (progressValue < 100) {
+                cy.wait(100)
+                checkProgress() // Continua verificando até atingir 100%
+            } else {
+                cy.log(`Barra atingiu ${progressValue}%, aguardando para resetar...`)
 
+                cy.wait(3000)
 
+                cy.get('#resetButton').should('be.visible').click()
+                cy.get('#progressBar').should('have.text', '0%')
+                cy.log('Barra resetada com sucesso!')
+            }
+        })
+    };
 
+    checkProgress()
+})
 
-
-// PAGE ELEMENTS PAGE
-// PAGE ELEMENTS PAGE
 // PAGE ELEMENTS PAGE
 // PAGE ELEMENTS PAGE

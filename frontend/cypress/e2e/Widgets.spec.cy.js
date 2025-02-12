@@ -1,13 +1,16 @@
-import interactions from '../support/pages/InteractionsPage'
+import widgetsPage from "../support/pages/WidgetsPage"
 
-describe('Interactions - Sortable', () => {
+describe('Widgets - Sortable', () => {
     beforeEach(() => {
-        interactions.go()
-        interactions.clickInteractions()
-        interactions.clickSortable()
+        widgetsPage.go()
+        widgetsPage.clickWidgets()
+        widgetsPage.clickProgressBar()
     })
 
-    it('Deve reorganizar os elementos na ordem decrescente usando drag and drop', () => {
-        interactions.reorderSortableElements()
+    it('Validar o Progress Bar', () => {
+        widgetsPage.clickStart()
+        widgetsPage.stopBeforeOrAt25()
+        widgetsPage.validateProgress()
+        widgetsPage.restartAndWaitFor100()
     })
 })
