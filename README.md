@@ -8,6 +8,8 @@
 ### 📂 Pasta `backend`
 📄 Contém um **README.md** com as instruções para executar o projeto **backend**. 
 
+## Estrutura do projeto
+```
 projeto
 ├── .github
 │   ├── workflows
@@ -31,3 +33,4 @@ projeto
 │   │   ├── support
 │   │   │   ├── pages
 
+```
