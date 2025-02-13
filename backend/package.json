@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Automação de Teste com Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "test:cy": "npx cypress open"
+  },
+  "keywords": ["Cypress, API"],
+  "author": "Ericton Brito",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^14.0.3"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.2"
+  }
+}
