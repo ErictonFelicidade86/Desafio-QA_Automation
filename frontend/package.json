@@ -1,13 +1,13 @@
 {
   "name": "frontend",
-  "description": "",
+  "description": "Automação de Teste com Cypress",
   "version": "1.0.0",
   "main": "cypress.config.js",
   "scripts": {
     "test": "npx cypress run",
     "test-ui": "npx cypress open"
   },
-  "keywords": [],
+  "keywords": ["Cypress", "E2E"],
   "author": "Ericton Brito",
   "license": "MIT",
   "dependencies": {

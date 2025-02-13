@@ -1,6 +1,6 @@
 class FormsPage {
     go(){
-        cy.visit("https://demoqa.com/")
+        cy.demoQA()
     }
 
     clickForms() {
@@ -19,4 +19,6 @@ class FormsPage {
         cy.closeModal()
     }
 
-} export default new FormsPage
+} 
+
+export default new FormsPage()

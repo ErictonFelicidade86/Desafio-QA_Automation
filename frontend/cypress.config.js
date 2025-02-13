@@ -7,6 +7,8 @@ module.exports = defineConfig({
     viewportWidth: 1920,
     baseUrl: "https://demoqa.com/",
     chromeWebSecurity:false,
+    screenshots: false,
+    video: false,
     setupNodeEvents(on, config) {},
   },
 });

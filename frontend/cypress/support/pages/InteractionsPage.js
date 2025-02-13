@@ -1,6 +1,6 @@
 class InteractionsPage {
     go() {
-        cy.visit("https://demoqa.com/");
+        cy.demoQA()
     }
 
     clickInteractions() {
@@ -12,10 +12,10 @@ class InteractionsPage {
     }
 
     moverDragDrop() {
-        const itemsToMove = ["One", "Two", "Three", "Four", "Five"];
+        const itemsToMove = ["One", "Two", "Three", "Four", "Five"]
         const target = "Six";
         cy.moveItems(itemsToMove, target)
     }
 }
 
-export default new InteractionsPage();
+export default new InteractionsPage()

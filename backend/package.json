@@ -1,15 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "description": "Automação de Teste com Cypress",
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
     "test:cy": "npx cypress open"
   },
-  "keywords": [],
+  "keywords": ["Cypress, API"],
   "author": "Ericton Brito",
-  "license": "ISC",
-  "description": "Teste de api com cypress",
+  "license": "MIT",
   "devDependencies": {
     "cypress": "^14.0.3"
   },

@@ -2,7 +2,7 @@ import data from '../../fixtures/user.json'
 
 class ElementsPages {
     go() {
-        cy.visit("https://demoqa.com/")
+        cy.demoQA()
     }
 
     clickElements() {

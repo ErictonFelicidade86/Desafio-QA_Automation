@@ -2,7 +2,18 @@ import data from '../fixtures/user.json'
 import user from '../fixtures/praticeForm.json'
 import 'cypress-xpath'
 
+// COMPONENTS
+Cypress.Commands.add('btnSubmit', () => {
+    cy.get('#submit').click()
+})
 
+Cypress.Commands.add('addUser', () => {
+    cy.get('#addNewRecordButton').should('be.visible').click()
+})
+
+Cypress.Commands.add('demoQA', () => {
+    cy.visit("https://demoqa.com/")
+})
 
 // PAGE ALERT FRAME WINDOWS
 Cypress.Commands.add('browserWindowsMenu', () => {
@@ -31,15 +42,6 @@ Cypress.Commands.add('validacaoTexto', () => {
 })
 
 // PAGE ELEMENTS PAGE
-
-Cypress.Commands.add('btnSubmit', () => {
-    cy.get('#submit').click()
-})
-
-Cypress.Commands.add('addUser', () => {
-    cy.get('#addNewRecordButton').should('be.visible').click()
-})
-
 Cypress.Commands.add('createUser', () => {
     cy.get('#firstName').type(data.user.first_name)
     cy.get('#lastName').type(data.user.last_name)
@@ -67,7 +69,6 @@ Cypress.Commands.add('editUser', () => {
 
 
 // PAGE FORMS PAGE
-
 Cypress.Commands.add('dataUserPractice', () => {
     cy.get("input[placeholder='First Name']").type(user.first_name) 
     cy.get("input[placeholder='Last Name']").type(user.last_name)
@@ -179,6 +180,3 @@ Cypress.Commands.add('monitorarProgresso', () => {
 
     checkProgress()
 })
-
-// PAGE ELEMENTS PAGE
-// PAGE ELEMENTS PAGE

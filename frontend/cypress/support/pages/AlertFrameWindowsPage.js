@@ -1,6 +1,6 @@
 class AlertFrameWindowsPage {
     go() {
-        cy.visit("https://demoqa.com/")
+        cy.demoQA()
     }
 
     clickAlertsFrameWindows() {

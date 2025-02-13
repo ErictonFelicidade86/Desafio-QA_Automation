@@ -1,6 +1,6 @@
 class WidgetsForms {
     go() {
-        cy.visit("https://demoqa.com/")
+        cy.demoQA()
     }
 
     clickWidgets() {

@@ -1,6 +1,6 @@
 import interactions from '../support/pages/InteractionsPage';
 
-describe('Interactions - Sortable', () => {
+describe('Interactions - Progress bar', () => {
     beforeEach(() => {
         interactions.go();
         interactions.clickInteractions();
