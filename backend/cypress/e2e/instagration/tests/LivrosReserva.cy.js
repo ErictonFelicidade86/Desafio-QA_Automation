@@ -27,3 +27,35 @@ describe('Criar uma reserva de livros', () => {
     cy.getUserDetails()
   })
 })
+
+describe('Testes de API - Caminhos de Falha e Validações', () => {
+
+  it('Tentativa de criar um usuário com dados inválidos', () => {
+    cy.createUserInvalid('', '').then(response => {
+      expect(response.status).to.be.oneOf([400, 406])  // Atualizado
+      expect(response.body).to.have.property('message').that.is.a('string')
+    })
+
+    cy.createUserInvalid('testuser', '123').then(response => {
+      expect(response.body).to.have.property('message').that.is.a('string')
+    })
+  })
+
+  it('Gerar um token com credenciais inválidas', () => {
+    cy.generateTokenInvalid('user_not_exists', 'InvalidPass1@').then(response => {
+      expect(response.status).to.eq(400)  // Confirmado
+      expect(response.body).to.have.property('message').that.is.a('string')
+    })
+  })
+
+  it('Confirmar autorização de um usuário não existente', () => {
+    cy.verifyNopUserAuthorization('user_not_exists', 'InvalidPass1@').then(response => {
+      expect(response.status).to.be.oneOf(400)
+      expect(response.body).to.have.property('message').that.is.a('string')
+    })
+  })
+
+})
+
+
+

@@ -48,3 +48,17 @@
 
 ---
 
+## 🚨 Testes de Caminho de Não Sucesso (Failure Path)
+
+### ❌ Tentativa de criar um usuário com dados inválidos
+- Enviar um **POST** para `https://demoqa.com/Account/v1/User` com:
+  - Corpo da requisição sem `username` ou `password`
+  - Senha fraca (exemplo: "123")
+- Validar que o **status code** retornado seja **400 Bad Request**.
+- Validar que a resposta contenha um JSON com:
+  ```json
+  {
+    "code": 0,
+    "message": "string"
+  }
+

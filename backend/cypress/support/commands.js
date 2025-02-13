@@ -23,7 +23,8 @@ Cypress.Commands.add("createUser", () => {
     method: 'POST',
     url: '/Account/v1/User',
     body: Cypress.env("userData"),
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
+    failOnStatusCode: false
   }).then(response => {
     expect(response.status).to.eq(201)
     expect(response.body).to.have.property("userID")
@@ -38,7 +39,8 @@ Cypress.Commands.add("generateToken", () => {
     method: 'POST',
     url: '/Account/v1/GenerateToken',
     body: Cypress.env("userData"),
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
+    failOnStatusCode: false
   }).then(response => {
     expect(response.status).to.eq(200)
     expect(response.body).to.have.property("token")
@@ -53,7 +55,8 @@ Cypress.Commands.add("verifyUserAuthorization", () => {
     method: 'POST',
     url: '/Account/v1/Authorized',
     body: Cypress.env("userData"),
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
+    failOnStatusCode: false
   }).then(response => {
     expect(response.status).to.eq(200)
     expect(response.body).to.be.true
@@ -64,7 +67,8 @@ Cypress.Commands.add("verifyUserAuthorization", () => {
 Cypress.Commands.add("listBooks", () => {
   cy.api({
     method: 'GET',
-    url: '/BookStore/v1/Books'
+    url: '/BookStore/v1/Books',
+    failOnStatusCode: false
   }).then(response => {
     expect(response.status).to.eq(200)
     expect(response.body.books).to.be.an("array").that.is.not.empty
@@ -85,7 +89,8 @@ Cypress.Commands.add("rentBooks", () => {
     body: {
       userId: Cypress.env("userID"),
       collectionOfIsbns: Cypress.env("booksList").map(book => ({ isbn: book.isbn }))
-    }
+    },
+    failOnStatusCode: false
   }).then(response => {
     expect(response.status).to.eq(201)
   })
@@ -98,9 +103,56 @@ Cypress.Commands.add("getUserDetails", () => {
     url: `/Account/v1/User/${Cypress.env("userID")}`,
     headers: {
       "Authorization": `Bearer ${Cypress.env("authToken")}`
-    }
+    },
+    failOnStatusCode: false
   }).then(response => {
     expect(response.status).to.eq(200)
     expect(response.body.books).to.have.length(2)
+  })
+})
+
+
+// Create User Inválido
+Cypress.Commands.add("createUserInvalid", () => {
+  Cypress.env("userDataInvald", {
+      userName: '',
+      password: ''
+    })
+  cy.api({
+    method: 'POST',
+    url: '/Account/v1/User',
+    body: Cypress.env("userDataInvald"),
+    headers: { "Content-Type": "application/json" },
+    failOnStatusCode: false
+  }).then(response => {
+    expect(response.status).to.eq(400)
+    expect(response.body).to.exist
+
+  })
+})
+
+// autenticação do token invalido
+Cypress.Commands.add("generateTokenInvalid", () => {
+  cy.api({
+    method: 'POST',
+    url: '/Account/v1/GenerateToken',
+    body: Cypress.env("userDataInvald"),
+    headers: { "Content-Type": "application/json" },
+    failOnStatusCode: false
+  }).then(response => {
+    expect(response.status).to.eq(400)
+  })
+})
+
+// Verificar a autorização não autorizada
+Cypress.Commands.add("verifyNopUserAuthorization", () => {
+  cy.api({
+    method: 'POST',
+    url: '/Account/v1/Authorized',
+    body: Cypress.env("userDataInvald"),
+    headers: { "Content-Type": "application/json" },
+    failOnStatusCode: false
+  }).then(response => {
+    expect(response.status).to.eq(400)
   })
 })
