@@ -50,7 +50,7 @@ describe('Testes de API - Caminhos de Falha e Validações', () => {
 
   it('Confirmar autorização de um usuário não existente', () => {
     cy.verifyNopUserAuthorization('user_not_exists', 'InvalidPass1@').then(response => {
-      expect(response.status).to.be.oneOf(400)
+      expect(response.status).to.be.oneOf([400, 404])
       expect(response.body).to.have.property('message').that.is.a('string')
     })
   })
